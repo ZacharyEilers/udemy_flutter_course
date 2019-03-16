@@ -1,9 +1,7 @@
 import 'dart:convert';
-import 'dart:async';
 
 import 'package:scoped_model/scoped_model.dart';
 import 'package:http/http.dart' as http;
-//import 'package:dio/dio.dart';
 
 import '../models/product.dart';
 import '../models/user.dart';
@@ -24,17 +22,8 @@ mixin ConnectedProductsModel on Model {
     };
     print(json.encode(productData));
 
-    Future<String> postData() async{
-      http.Response response = await http.post(
-        Uri.encodeFull("https://flutter-products-bebf3.firebaseio.com/products.json")
-      );
 
-      print(response.body);
-    }
-
-    postData();
-
-    //http.post("https://flutter-products-bebf3.firebaseio.com/products.json", body: json.encode(productData) );
+    http.post("https://flutter-products-bebf3.firebaseio.com/products.json", body: json.encode(productData) );
 
     final Product newProduct = Product(
         title: title,
